@@ -4,7 +4,7 @@ import 'package:flutter/services.dart';
 import 'melon_layout_platform_interface.dart';
 
 /// An implementation of [MelonLayoutPlatform] that uses method channels.
-class MethodChannelMelonLayout extends MelonLayoutPlatform {
+class MethodChannelMelonLayout extends MelonLayoutPluginPlatform {
   /// The method channel used to interact with the native platform.
   @visibleForTesting
   final methodChannel = const MethodChannel('melon_layout');

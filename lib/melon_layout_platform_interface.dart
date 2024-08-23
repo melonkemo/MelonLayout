@@ -2,23 +2,23 @@ import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
 import 'melon_layout_method_channel.dart';
 
-abstract class MelonLayoutPlatform extends PlatformInterface {
+abstract class MelonLayoutPluginPlatform extends PlatformInterface {
   /// Constructs a MelonLayoutPlatform.
-  MelonLayoutPlatform() : super(token: _token);
+  MelonLayoutPluginPlatform() : super(token: _token);
 
   static final Object _token = Object();
 
-  static MelonLayoutPlatform _instance = MethodChannelMelonLayout();
+  static MelonLayoutPluginPlatform _instance = MethodChannelMelonLayout();
 
   /// The default instance of [MelonLayoutPlatform] to use.
   ///
   /// Defaults to [MethodChannelMelonLayout].
-  static MelonLayoutPlatform get instance => _instance;
+  static MelonLayoutPluginPlatform get instance => _instance;
 
   /// Platform-specific implementations should set this with their own
   /// platform-specific class that extends [MelonLayoutPlatform] when
   /// they register themselves.
-  static set instance(MelonLayoutPlatform instance) {
+  static set instance(MelonLayoutPluginPlatform instance) {
     PlatformInterface.verifyToken(instance, _token);
     _instance = instance;
   }

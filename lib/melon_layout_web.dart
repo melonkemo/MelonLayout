@@ -9,12 +9,12 @@ import 'package:web/web.dart' as web;
 import 'melon_layout_platform_interface.dart';
 
 /// A web implementation of the MelonLayoutPlatform of the MelonLayout plugin.
-class MelonLayoutWeb extends MelonLayoutPlatform {
+class MelonLayoutWeb extends MelonLayoutPluginPlatform {
   /// Constructs a MelonLayoutWeb
   MelonLayoutWeb();
 
   static void registerWith(Registrar registrar) {
-    MelonLayoutPlatform.instance = MelonLayoutWeb();
+    MelonLayoutPluginPlatform.instance = MelonLayoutWeb();
   }
 
   /// Returns a [String] containing the version of the platform.
