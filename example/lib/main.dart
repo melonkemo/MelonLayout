@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:melon_layout/melon_layout.dart';
 
 void main() {
-  MelonLayout.instance;
+  MelonLayout.instance.init(desktop: 1000, tablet: 700);
   runApp(const MyApp());
 }
 
@@ -44,18 +44,15 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    return MelonLayout.layout(
-      context: context,
-      tablet: 700,
-      desktop: 1000,
-      child: MaterialApp(
-        home: Scaffold(
-          appBar: AppBar(
-            title: const Text('Plugin example app'),
-          ),
-          body: Center(
-            child: Text('Running on: $_platformVersion\n'),
-          ),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text(
+              "test ${MelonLayout.state<double>(context,mobile: context.layout.width, tablet: 500, desktop: 1000)}"),
+          //'Plugin example app ${MelonLayout.state<String>(context, mobile: "A", tablet: "B", desktop: "C")}'),
+        ),
+        body: Center(
+          child: Text('Running on: $_platformVersion\n'),
         ),
       ),
     );

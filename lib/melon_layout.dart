@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 import 'melon_layout_platform_interface.dart';
+export 'extensions/melon_layout_build_context.dart';
 
 enum MelonLayoutScale { mobile, tablet, desktop }
 
@@ -30,17 +31,29 @@ class MelonLayout {
     this.desktop = desktop;
   }
 
+  static T state<T>(BuildContext context, {T? mobile, T? tablet, T? desktop}) {
+    assert(!(mobile == null && tablet == null && desktop == null));
+    switch (MelonLayout.instance.getCurrentLayout(context)) {
+      case MelonLayoutScale.desktop:
+        return (desktop ?? (tablet ?? mobile))!;
+      case MelonLayoutScale.tablet:
+        return (tablet ?? (desktop ?? mobile))!;
+      default:
+        return (mobile ?? (tablet ?? desktop))!;
+    }
+  }
+
   MelonLayoutScale getCurrentLayout(BuildContext context) {
-    assert(MelonLayout.instance.desktop != null);
+    assert(desktop != null);
     final width = size(context).width;
-    if (width >= MelonLayout.instance.desktop!) return MelonLayoutScale.desktop;
-    if (MelonLayout.instance.tablet != null) {
-      if (width >= MelonLayout.instance.tablet!) return MelonLayoutScale.tablet;
+    if (width >= desktop!) return MelonLayoutScale.desktop;
+    if (tablet != null) {
+      if (width >= tablet!) return MelonLayoutScale.tablet;
     }
     return MelonLayoutScale.mobile;
   }
 
-  Size size(BuildContext context) => MediaQuery.of(context).size;
+  static Size size(BuildContext context) => MediaQuery.of(context).size;
 
   MelonLayoutPlatform getCurrentPlatform(BuildContext context) {
     if (kIsWeb) return MelonLayoutPlatform.web;
@@ -49,13 +62,10 @@ class MelonLayout {
     return MelonLayoutPlatform.desktop;
   }
 
-  static Widget layout(
+  static Widget blueprint(
       {required BuildContext context,
-      double? tablet,
-      required double desktop,
-      required Widget child}) {
-    MelonLayout.instance.init(tablet: tablet, desktop: desktop);
-    return child;
+      required Widget Function(MelonLayout layout) child}) {
+    return child.call(MelonLayout.instance);
   }
 
   Future<String?> getPlatformVersion() {
