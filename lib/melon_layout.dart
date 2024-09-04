@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 
 import 'melon_layout_platform_interface.dart';
-export 'extensions/melon_layout_build_context.dart';
 
 enum MelonLayoutScale { mobile, tablet, desktop }
 
@@ -29,9 +28,12 @@ class MelonLayout {
   double? tablet;
   double? desktop;
 
-  void init({double? tablet, required double desktop}) {
+  double scale = 1.0;
+
+  void init({double? tablet, required double desktop,double scale = 1.0}) {
     this.tablet = tablet;
     this.desktop = desktop;
+    this.scale = scale;
   }
 
   static T flex<T>(BuildContext context, {T? mobile, T? tablet, T? desktop}) {
@@ -73,5 +75,10 @@ class MelonLayout {
 
   Future<String?> getPlatformVersion() {
     return MelonLayoutPluginPlatform.instance.getPlatformVersion();
+  }
+
+  double dt(double size) {
+    assert(scale > 0);
+    return size * scale;
   }
 }

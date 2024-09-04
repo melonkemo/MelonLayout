@@ -3,6 +3,7 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 import 'package:melon_layout/melon_layout.dart';
+import 'package:melon_layout/extensions/melon_layout_extension.dart';
 
 void main() {
   MelonLayout.instance.init(desktop: MelonLayout.defaultDesktop,tablet: MelonLayout.defaultTablet);
