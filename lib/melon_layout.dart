@@ -31,7 +31,7 @@ class MelonLayout {
     this.desktop = desktop;
   }
 
-  static T state<T>(BuildContext context, {T? mobile, T? tablet, T? desktop}) {
+  static T flex<T>(BuildContext context, {T? mobile, T? tablet, T? desktop}) {
     assert(!(mobile == null && tablet == null && desktop == null));
     switch (MelonLayout.instance.getCurrentLayout(context)) {
       case MelonLayoutScale.desktop:

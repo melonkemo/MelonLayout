@@ -48,11 +48,18 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         appBar: AppBar(
           title: Text(
-              "test ${MelonLayout.state<double>(context,mobile: context.layout.width, tablet: 500, desktop: 1000)}"),
+              "Running ${MelonLayout.flex<double>(context, mobile: context.layout.width, tablet: 500, desktop: 1000)}"),
           //'Plugin example app ${MelonLayout.state<String>(context, mobile: "A", tablet: "B", desktop: "C")}'),
         ),
         body: Center(
-          child: Text('Running on: $_platformVersion\n'),
+          child: Column(
+            children: [
+              Text(
+                  '${MelonLayout.flex<double>(context, mobile: context.layout.width, tablet: 500, desktop: 1000)}'),
+              Text(
+                  '${context.flex<double>(mobile: context.layout.width, tablet: 500, desktop: 1000)}'),
+            ],
+          ),
         ),
       ),
     );

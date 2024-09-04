@@ -8,9 +8,14 @@ MelonLayout.instance.init(desktop: <value>, tablet: <value>);
  ```
 
 ## Usage
-#### Layout State
+#### Layout Flex State (Normal)
  ```dart
-MelonLayout.state<type>(context,mobile: <value>, tablet: <value>, desktop: <value>)
+MelonLayout.flex<type>(context,mobile: <value>, tablet: <value>, desktop: <value>)
+ ```
+
+#### Layout Flex State (BuildContext)
+ ```dart
+context.flex<type>(mobile: <value>, tablet: <value>, desktop: <value>)
  ```
 
 #### BuildContext Size
