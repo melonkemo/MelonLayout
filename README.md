@@ -6,6 +6,8 @@ Melon layout widget
  ```dart
 MelonLayout.instance.setup(desktop: <value>, tablet: <value>);
  ```
+> [!IMPORTANT]
+> required desktop
 
 ## Usage
 #### Layout
