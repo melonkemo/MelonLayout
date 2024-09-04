@@ -1,10 +1,10 @@
 # MelonLayout
 Melon layout widget
 
-## Initialize
+## Setup
 #### main.dart
  ```dart
-MelonLayout.instance.init(desktop: <value>, tablet: <value>);
+MelonLayout.instance.setup(desktop: <value>, tablet: <value>);
  ```
 
 ## Usage
@@ -26,4 +26,22 @@ context.layout.<width || height>
 #### Current Layout
  ```dart
 MelonLayout.instance.getCurrentLayout(context)
+ ```
+
+## Dimensions
+#### Fully
+ ```dart
+MelonLayout.instance.dt(<value>)
+ ```
+#### BuildContext
+ ```dart
+context.dt(<value>)
+ ```
+#### Integer
+ ```dart
+10.dt
+ ```
+#### Double
+ ```dart
+10.0.dt
  ```

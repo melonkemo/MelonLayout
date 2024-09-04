@@ -30,7 +30,7 @@ class MelonLayout {
 
   double scale = 1.0;
 
-  void init({double? tablet, required double desktop,double scale = 1.0}) {
+  void setup({double? tablet, required double desktop,double scale = 1.0}) {
     this.tablet = tablet;
     this.desktop = desktop;
     this.scale = scale;
