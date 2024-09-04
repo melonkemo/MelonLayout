@@ -45,6 +45,16 @@ context.dt(<value>)
 <value>.dt
  ```
 
+#### Scaffold
+###### Basic
+ ```dart
+MelonLayoutScaffold(
+  appBar: <value>,
+  body: <value>,
+  backgroundColor: <value>
+)
+ ```
+
 #### Utilities
 ###### BuildContext Size
  ```dart
