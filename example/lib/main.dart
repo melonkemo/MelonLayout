@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:melon_layout/melon_layout.dart';
 
 void main() {
-  MelonLayout.instance.init(desktop: 1000, tablet: 700);
+  MelonLayout.instance.init(desktop: MelonLayout.defaultDesktop,tablet: MelonLayout.defaultTablet);
   runApp(const MyApp());
 }
 
@@ -46,6 +46,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+
         appBar: AppBar(
           title: Text(
               "Running ${MelonLayout.flex<double>(context, mobile: context.layout.width, tablet: 500, desktop: 1000)}"),

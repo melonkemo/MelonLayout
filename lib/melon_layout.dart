@@ -18,6 +18,9 @@ class MelonLayout {
   }
 
   static MelonLayout get instance => _instance;
+  static double get defaultDesktop => 700.00;
+  static double get defaultTablet => 500.00;
+
 
   MelonLayout._internal();
 
