@@ -8,19 +8,15 @@ MelonLayout.instance.setup(desktop: <value>, tablet: <value>);
  ```
 
 ## Usage
-#### Layout Flex State (Normal)
+### Layout
+#### Flex State (Normal)
  ```dart
 MelonLayout.flex<type>(context,mobile: <value>, tablet: <value>, desktop: <value>)
  ```
 
-#### Layout Flex State (BuildContext)
+#### Flex State (BuildContext)
  ```dart
 context.flex<type>(mobile: <value>, tablet: <value>, desktop: <value>)
- ```
-
-#### BuildContext Size
- ```dart
-context.layout.<width || height>
  ```
 
 #### Current Layout
@@ -28,7 +24,7 @@ context.layout.<width || height>
 MelonLayout.instance.getCurrentLayout(context)
  ```
 
-## Dimensions
+### Dimensions
 #### Setup
  ```dart
  dimension: <value>
@@ -47,4 +43,10 @@ context.dt(<value>)
 #### Integer or Double
  ```dart
 <value>.dt
+ ```
+
+### Utilities
+#### BuildContext Size
+ ```dart
+context.layout.<width || height>
  ```
