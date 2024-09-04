@@ -54,14 +54,16 @@ MelonLayoutScaffold(
  ```
 ###### Advanced
  ```dart
-appBar: <value>
-backgroundColor: <value>
-children: [<value>]
 statusBarColor: <value> // Colors.white
 systemNavigationBarColor: <value> // Colors.transparent
 statusBarIconBrightness: <value> // Brightness.dark
 systemNavigationBarIconBrightness: <value> // Brightness.dark
+
+appBar: <value>
 extendBodyBehindAppBar: <value> // false
+
+backgroundColor: <value>
+children: [<value>]
  ```
 #### Utilities
 ###### BuildContext Size
