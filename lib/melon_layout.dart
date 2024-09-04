@@ -17,9 +17,10 @@ class MelonLayout {
   }
 
   static MelonLayout get instance => _instance;
-  static double get defaultDesktop => 700.00;
-  static double get defaultTablet => 500.00;
 
+  static double get defaultDesktop => 700.00;
+
+  static double get defaultTablet => 500.00;
 
   MelonLayout._internal();
 
@@ -28,12 +29,29 @@ class MelonLayout {
   double? tablet;
   double? desktop;
 
-  double scale = 1.0;
+  double dimension = 1.0;
+  double mobileDimension = 1.0;
+  double webDimension = 1.0;
+  double desktopDimension = 1.0;
 
-  void setup({double? tablet, required double desktop,double scale = 1.0}) {
+  void setup(
+      {double? tablet,
+      required double desktop,
+      double dimension = 1.0,
+      double mobileDimension = 1.0,
+      double webDimension = 1.0,
+      desktopDimension = 1.0}) {
+    assert(dimension > 0.0);
+    assert(mobileDimension > 0.0);
+    assert(webDimension > 0.0);
+    assert(desktopDimension > 0.0);
+
     this.tablet = tablet;
     this.desktop = desktop;
-    this.scale = scale;
+    this.dimension = dimension;
+    this.mobileDimension = mobileDimension;
+    this.webDimension = webDimension;
+    this.desktopDimension = desktopDimension;
   }
 
   static T flex<T>(BuildContext context, {T? mobile, T? tablet, T? desktop}) {
@@ -78,7 +96,13 @@ class MelonLayout {
   }
 
   double dt(double size) {
-    assert(scale > 0);
-    return size * scale;
+    if (kIsWeb) return (size * dimension) * webDimension;
+    if (Platform.isIOS || Platform.isAndroid) {
+      return (size * dimension) * mobileDimension;
+    }
+    if (Platform.isMacOS || Platform.isLinux || Platform.isWindows) {
+      return (size * dimension) * desktopDimension;
+    }
+    return size * dimension;
   }
 }

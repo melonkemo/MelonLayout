@@ -29,6 +29,13 @@ MelonLayout.instance.getCurrentLayout(context)
  ```
 
 ## Dimensions
+#### Setup
+ ```dart
+ dimension: <value>
+mobileDimension: <value>
+webDimension: <value>
+desktopDimension: <value>
+ ```
 #### Fully
  ```dart
 MelonLayout.instance.dt(<value>)

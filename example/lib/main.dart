@@ -6,7 +6,7 @@ import 'package:melon_layout/melon_layout.dart';
 import 'package:melon_layout/extensions/melon_layout_extension.dart';
 
 void main() {
-  MelonLayout.instance.init(desktop: MelonLayout.defaultDesktop,tablet: MelonLayout.defaultTablet);
+  MelonLayout.instance.setup(desktop: MelonLayout.defaultDesktop,tablet: MelonLayout.defaultTablet);
   runApp(const MyApp());
 }
 
