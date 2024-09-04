@@ -44,11 +44,7 @@ MelonLayout.instance.dt(<value>)
  ```dart
 context.dt(<value>)
  ```
-#### Integer
+#### Integer or Double
  ```dart
-10.dt
- ```
-#### Double
- ```dart
-10.0.dt
+<value>.dt
  ```
