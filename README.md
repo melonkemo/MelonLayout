@@ -7,7 +7,7 @@ Melon layout widget
 MelonLayout.instance.setup(desktop: <value>, tablet: <value>);
  ```
 > [!IMPORTANT]
-> required desktop
+> REQUIRED desktop: <value>
 
 ## Usage
 #### Layout
