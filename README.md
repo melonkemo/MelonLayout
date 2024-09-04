@@ -27,7 +27,7 @@ MelonLayout.instance.getCurrentLayout(context)
 #### Dimensions
 ###### Setup
  ```dart
- dimension: <value>
+dimension: <value>
 mobileDimension: <value>
 webDimension: <value>
 desktopDimension: <value>
@@ -49,12 +49,20 @@ context.dt(<value>)
 ###### Basic
  ```dart
 MelonLayoutScaffold(
-  appBar: <value>,
-  body: <value>,
-  backgroundColor: <value>
+  body: <value>
 )
  ```
-
+###### Advanced
+ ```dart
+appBar: <value>
+backgroundColor: <value>
+children: [<value>]
+statusBarColor: <value> // Colors.white
+systemNavigationBarColor: <value> // Colors.transparent
+statusBarIconBrightness: <value> // Brightness.dark
+systemNavigationBarIconBrightness: <value> // Brightness.dark
+extendBodyBehindAppBar: <value> // false
+ ```
 #### Utilities
 ###### BuildContext Size
  ```dart
