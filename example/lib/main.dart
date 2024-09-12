@@ -50,6 +50,7 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      //home: _layout(context),
       home: _layout(context),
     );
   }
@@ -60,22 +61,41 @@ class _MyAppState extends State<MyApp> {
     //   menu: Container(color: Colors.red),
     //   menuWidth: 200,
     // );
-    return SingleCenterMelonLayoutWidget(
-      body: _body(context),
-      maxWidth: 700,
+    // return SingleCenterMelonLayoutWidget(
+    //   body: _body(context),
+    //   maxWidth: 700,
+    // );
+    return MelonLayoutScaffold(
+      backgroundColor: Colors.lime,
+      extendBodyBehindAppBar: true,
+      //appBar: MelonAppbarWidget.widget(context),
+      appBar: MelonBarWidget.appbar(
+        context,
+        isBlur: true,
+        tintColor: Colors.greenAccent.withOpacity(0.5),
+      ),
+      bottomNavigationBar: MelonBarWidget.full(context,
+          isBlur: true, tintColor: Colors.purpleAccent.withOpacity(0.5)),
+      // appBar: AppBar(
+      //   backgroundColor: Colors.white,
+      //   title: Text(
+      //       "Running ${MelonLayout.flex<double>(context, mobile: context.layout.width, tablet: 500, desktop: 1000)}"),
+      //   //'Plugin example app ${MelonLayout.state<String>(context, mobile: "A", tablet: "B", desktop: "C")}'),
+      // ),
+      body: SingleCenterMelonLayoutWidget(
+        body: _body(context),
+        maxWidth: 700,
+      ),
     );
   }
 
   Widget _body(BuildContext context) {
-    return MelonLayoutScaffold(
-      backgroundColor: Colors.lime,
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        title: Text(
-            "Running ${MelonLayout.flex<double>(context, mobile: context.layout.width, tablet: 500, desktop: 1000)}"),
-        //'Plugin example app ${MelonLayout.state<String>(context, mobile: "A", tablet: "B", desktop: "C")}'),
-      ),
-      body: Center(
+    return Container(
+      width: context.flex<double>(mobile: context.layout.width, desktop: 700),
+      color: Colors.lightBlue,
+      padding: EdgeInsets.only(
+          top: MelonBarWidget.height, bottom: MelonBarWidget.height),
+      child: Center(
         child: Column(
           children: [
             Text(

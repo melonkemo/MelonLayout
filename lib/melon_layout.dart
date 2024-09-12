@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'melon_layout_platform_interface.dart';
 
 export 'widgets/melon_layout_scaffold.dart';
+export 'widgets/melon_bar_widget.dart';
 
 enum MelonLayoutScale { mobile, tablet, desktop }
 

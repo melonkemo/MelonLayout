@@ -12,6 +12,7 @@ class MelonLayoutScaffold extends StatelessWidget {
   final List<Widget>? children;
   final PreferredSizeWidget? appBar;
   final Color? backgroundColor;
+  final Widget? bottomNavigationBar;
 
   const MelonLayoutScaffold({
     super.key,
@@ -20,10 +21,12 @@ class MelonLayoutScaffold extends StatelessWidget {
     this.statusBarIconBrightness = Brightness.dark,
     this.systemNavigationBarIconBrightness = Brightness.dark,
     this.extendBodyBehindAppBar = false,
+
     required this.body,
     this.appBar,
     this.backgroundColor,
     this.children,
+    this.bottomNavigationBar,
   });
 
   @override
@@ -33,7 +36,15 @@ class MelonLayoutScaffold extends StatelessWidget {
         if (backgroundColor != null) Container(color: backgroundColor),
         ...?children,
         scaffold(context),
+        if (bottomNavigationBar != null) _bottomNavigationBar(context),
       ],
+    );
+  }
+
+  Widget _bottomNavigationBar(BuildContext context) {
+    return Align(
+      alignment: Alignment.bottomCenter,
+      child: bottomNavigationBar!,
     );
   }
 
@@ -48,7 +59,8 @@ class MelonLayoutScaffold extends StatelessWidget {
         child: Scaffold(
           extendBodyBehindAppBar: extendBodyBehindAppBar,
           appBar: appBar,
-          backgroundColor: backgroundColor == null ? Colors.white :Colors.transparent,
+          backgroundColor:
+              backgroundColor == null ? Colors.white : Colors.transparent,
           body: body,
           //bottomSheet: bottomSheet,
         ),
