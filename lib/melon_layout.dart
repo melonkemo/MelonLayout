@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'melon_layout_platform_interface.dart';
@@ -11,7 +12,6 @@ enum MelonLayoutScale { mobile, tablet, desktop }
 enum MelonLayoutPlatform { web, ios, android, desktop }
 
 enum MelonLayoutType { singleCenter }
-
 
 class MelonLayout {
   static final MelonLayout _instance = MelonLayout._internal();
@@ -60,6 +60,8 @@ class MelonLayout {
 
   static T flex<T>(BuildContext context, {T? mobile, T? tablet, T? desktop}) {
     assert(!(mobile == null && tablet == null && desktop == null));
+    isMobile(context);
+
     switch (MelonLayout.instance.getCurrentLayout(context)) {
       case MelonLayoutScale.desktop:
         return (desktop ?? (tablet ?? mobile))!;
@@ -83,7 +85,11 @@ class MelonLayout {
   static Size size(BuildContext context) => MediaQuery.of(context).size;
 
   MelonLayoutPlatform getCurrentPlatform(BuildContext context) {
-    if (kIsWeb) return MelonLayoutPlatform.web;
+    if (kIsWeb) {
+      if(defaultTargetPlatform == TargetPlatform.iOS) return MelonLayoutPlatform.ios;
+      if(defaultTargetPlatform == TargetPlatform.android) return MelonLayoutPlatform.android;
+      return MelonLayoutPlatform.web;
+    }
     if (Platform.isIOS) return MelonLayoutPlatform.ios;
     if (Platform.isAndroid) return MelonLayoutPlatform.android;
     return MelonLayoutPlatform.desktop;
@@ -100,7 +106,15 @@ class MelonLayout {
   }
 
   double dt(double size) {
-    if (kIsWeb) return (size * dimension) * webDimension;
+    if (kIsWeb) {
+      if (defaultTargetPlatform != TargetPlatform.iOS &&
+          defaultTargetPlatform != TargetPlatform.android) {
+        return (size * dimension) * webDimension;
+      } else {
+        return (size * dimension) * mobileDimension;
+      }
+    }
+    //if (kIsWeb) return (size * dimension) * webDimension;
     if (Platform.isIOS || Platform.isAndroid) {
       return (size * dimension) * mobileDimension;
     }
@@ -109,4 +123,7 @@ class MelonLayout {
     }
     return size * dimension;
   }
+
+  static bool isMobile(BuildContext context) =>
+      size(context).width < 450 && size(context).height > 600;
 }

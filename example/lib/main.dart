@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 
@@ -9,7 +10,10 @@ import 'package:melon_layout/widgets/layouts/single_center_melon_layout_widget.d
 
 void main() {
   MelonLayout.instance.setup(
-      desktop: MelonLayout.defaultDesktop, tablet: MelonLayout.defaultTablet);
+      desktop: MelonLayout.defaultDesktop,
+      tablet: MelonLayout.defaultTablet,
+      mobileDimension: 1.0,
+      webDimension: 0.85);
   runApp(const MyApp());
 }
 
@@ -40,7 +44,6 @@ class _MyAppState extends State<MyApp> {
     }
 
     if (!mounted) return;
-
     setState(() {
       _platformVersion = platformVersion;
     });
@@ -69,13 +72,16 @@ class _MyAppState extends State<MyApp> {
       backgroundColor: Colors.lime,
       extendBodyBehindAppBar: true,
       //appBar: MelonAppbarWidget.widget(context),
-      appBar: MelonBarWidget.appbar(
+      appBar: MelonBarWidget.appBar(
+        height: context.flex<double>(mobile: 56.0, desktop: 50.0).dt,
         context,
         isBlur: true,
         tintColor: Colors.greenAccent.withOpacity(0.5),
       ),
-      bottomNavigationBar: MelonBarWidget.full(context,
-          isBlur: true, tintColor: Colors.purpleAccent.withOpacity(0.5)),
+      bottomNavigationBar: MelonBarWidget.bottomBar(context,
+          height: context.flex<double>(mobile: 56.0, desktop: 50.0).dt,
+          isBlur: true,
+          tintColor: Colors.purpleAccent.withOpacity(0.5)),
       // appBar: AppBar(
       //   backgroundColor: Colors.white,
       //   title: Text(
@@ -86,6 +92,11 @@ class _MyAppState extends State<MyApp> {
         body: _body(context),
         maxWidth: 700,
       ),
+      // body: MenuMelonLayoutWidget(
+      //   body: _body(context),
+      //   menu: Container(color: Colors.red),
+      //   menuWidth: 250,
+      // ),
     );
   }
 
@@ -99,9 +110,15 @@ class _MyAppState extends State<MyApp> {
         child: Column(
           children: [
             Text(
-                '${MelonLayout.flex<double>(context, mobile: context.layout.width, tablet: 500, desktop: 1000)}'),
+              '${MelonLayout.flex<double>(context, mobile: context.layout.width, tablet: 500, desktop: 1000)}',
+              style: TextStyle(fontSize: 16.0.dt),
+            ),
             Text(
-                '${context.flex<double>(mobile: context.layout.width, tablet: 500, desktop: 1000)}'),
+              "ยินดีต้อนรับกลับ ${defaultTargetPlatform}",
+              style: TextStyle(fontSize: 32.dt, fontWeight: FontWeight.bold),
+            ),
+            Text(
+                '${MediaQuery.of(context).padding.bottom} ${MediaQuery.of(context).viewInsets.bottom} ${MediaQuery.of(context).viewPadding.bottom} ${context.flex<double>(mobile: context.layout.width, tablet: 500, desktop: 1000)}'),
           ],
         ),
       ),

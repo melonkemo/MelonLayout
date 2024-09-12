@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -21,7 +22,6 @@ class MelonLayoutScaffold extends StatelessWidget {
     this.statusBarIconBrightness = Brightness.dark,
     this.systemNavigationBarIconBrightness = Brightness.dark,
     this.extendBodyBehindAppBar = false,
-
     required this.body,
     this.appBar,
     this.backgroundColor,

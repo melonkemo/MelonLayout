@@ -14,7 +14,8 @@ extension MelonLayoutBuildContextExtension on BuildContext {
 }
 
 extension MelonLayoutIntegerExtension on int {
-  int get dt => MelonLayout.instance.dt(toDouble()).toInt();
+  double get dt => MelonLayout.instance.dt(toDouble());
+
 }
 
 extension MelonLayoutDoubleExtension on double {

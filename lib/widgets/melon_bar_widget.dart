@@ -30,7 +30,7 @@ class MelonBarWidget {
       widget(context,
           height: height, body: body, isBlur: isBlur, tintColor: tintColor);
 
-  static PreferredSizeWidget appbar(
+  static PreferredSizeWidget appBar(
     BuildContext context, {
     Widget? leadingWidget,
     Widget? trailingWidget,
@@ -39,27 +39,66 @@ class MelonBarWidget {
     bool isBlur = false,
     Color? tintColor,
   }) =>
-      full(context,
-          height: height,
-          body: Stack(
-            children: [
-              if (leadingWidget != null)
-                Align(
-                  alignment: Alignment.centerLeft,
-                  child: leadingWidget,
-                ),
-              if (centerWidget != null)
-                Align(
-                  alignment: Alignment.center,
-                  child: centerWidget,
-                ),
-              if (trailingWidget != null)
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: trailingWidget,
-                ),
-            ],
-          ),
-          isBlur: isBlur,
-          tintColor: tintColor);
+      full(
+        context,
+        height: height,
+        body: Stack(
+          children: [
+            if (leadingWidget != null)
+              Align(
+                alignment: Alignment.centerLeft,
+                child: leadingWidget,
+              ),
+            if (centerWidget != null)
+              Align(
+                alignment: Alignment.center,
+                child: centerWidget,
+              ),
+            if (trailingWidget != null)
+              Align(
+                alignment: Alignment.centerRight,
+                child: trailingWidget,
+              ),
+          ],
+        ),
+        isBlur: isBlur,
+        tintColor: tintColor,
+      );
+
+  static PreferredSizeWidget bottomBar(
+    BuildContext context, {
+    Widget? leadingWidget,
+    Widget? trailingWidget,
+    Widget? centerWidget,
+    double? height,
+    bool isBlur = false,
+    Color? tintColor,
+  }) =>
+      full(
+        context,
+        height: height != null
+            ? height + MediaQuery.of(context).padding.bottom
+            : height,
+        body: Stack(
+          children: [
+            if (leadingWidget != null)
+              Align(
+                alignment: Alignment.centerLeft,
+                child: leadingWidget,
+              ),
+            if (centerWidget != null)
+              Align(
+                alignment: Alignment.center,
+                child: centerWidget,
+              ),
+            if (trailingWidget != null)
+              Align(
+                alignment: Alignment.centerRight,
+                child: trailingWidget,
+              ),
+          ],
+        ),
+        isBlur: isBlur,
+        tintColor: tintColor,
+      );
 }
