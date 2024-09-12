@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
-import 'package:melon_layout/widgets/melon_layout_scaffold.dart';
 import 'melon_layout_platform_interface.dart';
 
 export 'widgets/melon_layout_scaffold.dart';
@@ -9,6 +8,9 @@ export 'widgets/melon_layout_scaffold.dart';
 enum MelonLayoutScale { mobile, tablet, desktop }
 
 enum MelonLayoutPlatform { web, ios, android, desktop }
+
+enum MelonLayoutType { singleCenter }
+
 
 class MelonLayout {
   static final MelonLayout _instance = MelonLayout._internal();
@@ -54,8 +56,6 @@ class MelonLayout {
     this.webDimension = webDimension;
     this.desktopDimension = desktopDimension;
   }
-
-  static Widget scaffold({required Widget body,PreferredSizeWidget? appBar}) => MelonLayoutScaffold(body: body,appBar: appBar,);
 
   static T flex<T>(BuildContext context, {T? mobile, T? tablet, T? desktop}) {
     assert(!(mobile == null && tablet == null && desktop == null));

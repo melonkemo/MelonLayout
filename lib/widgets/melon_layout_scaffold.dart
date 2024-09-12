@@ -47,8 +47,8 @@ class MelonLayoutScaffold extends StatelessWidget {
         ),
         child: Scaffold(
           extendBodyBehindAppBar: extendBodyBehindAppBar,
-          //appBar: appbar(context),
-          backgroundColor: Colors.transparent,
+          appBar: appBar,
+          backgroundColor: backgroundColor == null ? Colors.white :Colors.transparent,
           body: body,
           //bottomSheet: bottomSheet,
         ),

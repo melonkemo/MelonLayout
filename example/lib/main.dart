@@ -4,9 +4,12 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:melon_layout/melon_layout.dart';
 import 'package:melon_layout/extensions/melon_layout_extension.dart';
+import 'package:melon_layout/widgets/layouts/menu_melon_layout_widget.dart';
+import 'package:melon_layout/widgets/layouts/single_center_melon_layout_widget.dart';
 
 void main() {
-  MelonLayout.instance.setup(desktop: MelonLayout.defaultDesktop,tablet: MelonLayout.defaultTablet);
+  MelonLayout.instance.setup(
+      desktop: MelonLayout.defaultDesktop, tablet: MelonLayout.defaultTablet);
   runApp(const MyApp());
 }
 
@@ -46,21 +49,40 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MelonLayoutScaffold(
-        appBar: AppBar(
-          title: Text(
-              "Running ${MelonLayout.flex<double>(context, mobile: context.layout.width, tablet: 500, desktop: 1000)}"),
-          //'Plugin example app ${MelonLayout.state<String>(context, mobile: "A", tablet: "B", desktop: "C")}'),
-        ),
-        body: Center(
-          child: Column(
-            children: [
-              Text(
-                  '${MelonLayout.flex<double>(context, mobile: context.layout.width, tablet: 500, desktop: 1000)}'),
-              Text(
-                  '${context.flex<double>(mobile: context.layout.width, tablet: 500, desktop: 1000)}'),
-            ],
-          ),
+      debugShowCheckedModeBanner: false,
+      home: _layout(context),
+    );
+  }
+
+  Widget _layout(BuildContext context) {
+    // return MenuMelonLayoutWidget(
+    //   body: _body(context),
+    //   menu: Container(color: Colors.red),
+    //   menuWidth: 200,
+    // );
+    return SingleCenterMelonLayoutWidget(
+      body: _body(context),
+      maxWidth: 700,
+    );
+  }
+
+  Widget _body(BuildContext context) {
+    return MelonLayoutScaffold(
+      backgroundColor: Colors.lime,
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        title: Text(
+            "Running ${MelonLayout.flex<double>(context, mobile: context.layout.width, tablet: 500, desktop: 1000)}"),
+        //'Plugin example app ${MelonLayout.state<String>(context, mobile: "A", tablet: "B", desktop: "C")}'),
+      ),
+      body: Center(
+        child: Column(
+          children: [
+            Text(
+                '${MelonLayout.flex<double>(context, mobile: context.layout.width, tablet: 500, desktop: 1000)}'),
+            Text(
+                '${context.flex<double>(mobile: context.layout.width, tablet: 500, desktop: 1000)}'),
+          ],
         ),
       ),
     );
