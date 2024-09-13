@@ -35,6 +35,7 @@ class MelonLayout {
 
   double dimension = 1.0;
   double mobileDimension = 1.0;
+  double mobileWebDimension = 1.0;
   double webDimension = 1.0;
   double desktopDimension = 1.0;
 
@@ -43,7 +44,8 @@ class MelonLayout {
       required double desktop,
       double dimension = 1.0,
       double mobileDimension = 1.0,
-      double webDimension = 1.0,
+        double mobileWebDimension = 1.0,
+        double webDimension = 1.0,
       desktopDimension = 1.0}) {
     assert(dimension > 0.0);
     assert(mobileDimension > 0.0);
@@ -54,6 +56,7 @@ class MelonLayout {
     this.desktop = desktop;
     this.dimension = dimension;
     this.mobileDimension = mobileDimension;
+    this.mobileWebDimension = mobileWebDimension;
     this.webDimension = webDimension;
     this.desktopDimension = desktopDimension;
   }
@@ -111,7 +114,7 @@ class MelonLayout {
           defaultTargetPlatform != TargetPlatform.android) {
         return (size * dimension) * webDimension;
       } else {
-        return (size * dimension) * mobileDimension;
+        return (size * dimension) * mobileWebDimension;
       }
     }
     //if (kIsWeb) return (size * dimension) * webDimension;

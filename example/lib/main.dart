@@ -13,6 +13,7 @@ void main() {
       desktop: MelonLayout.defaultDesktop,
       tablet: MelonLayout.defaultTablet,
       mobileDimension: 1.0,
+      mobileWebDimension: 0.95,
       webDimension: 0.85);
   runApp(const MyApp());
 }
