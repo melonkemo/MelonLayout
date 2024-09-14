@@ -17,6 +17,7 @@ class MelonLayoutScaffold extends StatelessWidget {
   final Color? backgroundColor;
   final Widget? bottomNavigationBar;
   final Widget? bottomSheet;
+  final Color? drawerScrimColor;
 
   MelonLayoutScaffold({
     super.key,
@@ -29,6 +30,7 @@ class MelonLayoutScaffold extends StatelessWidget {
     required this.body,
     this.drawer,
     this.bottomSheet,
+    this.drawerScrimColor,
     this.appBar,
     this.backgroundColor,
     this.children,
@@ -65,6 +67,7 @@ class MelonLayoutScaffold extends StatelessWidget {
           systemNavigationBarIconBrightness: systemNavigationBarIconBrightness,
         ),
         child: Scaffold(
+          drawerScrimColor: drawerScrimColor,
           key: _scaffoldKey,
           extendBodyBehindAppBar: extendBodyBehindAppBar ?? (appBar != null),
           appBar: appBar,
