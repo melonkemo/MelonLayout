@@ -7,22 +7,28 @@ class MelonLayoutScaffold extends StatelessWidget {
   final Color systemNavigationBarColor;
   final Brightness statusBarIconBrightness;
   final Brightness systemNavigationBarIconBrightness;
-  final bool extendBodyBehindAppBar;
+  final bool? extendBodyBehindAppBar;
+  final bool? extendBodyBehindBottomNavigationBar;
+  final Drawer? drawer;
 
   final Widget body;
   final List<Widget>? children;
   final PreferredSizeWidget? appBar;
   final Color? backgroundColor;
   final Widget? bottomNavigationBar;
+  final Widget? bottomSheet;
 
-  const MelonLayoutScaffold({
+  MelonLayoutScaffold({
     super.key,
     this.statusBarColor = Colors.white,
     this.systemNavigationBarColor = Colors.transparent,
     this.statusBarIconBrightness = Brightness.dark,
     this.systemNavigationBarIconBrightness = Brightness.dark,
-    this.extendBodyBehindAppBar = false,
+    this.extendBodyBehindAppBar,
+    this.extendBodyBehindBottomNavigationBar,
     required this.body,
+    this.drawer,
+    this.bottomSheet,
     this.appBar,
     this.backgroundColor,
     this.children,
@@ -36,7 +42,7 @@ class MelonLayoutScaffold extends StatelessWidget {
         if (backgroundColor != null) Container(color: backgroundColor),
         ...?children,
         scaffold(context),
-        if (bottomNavigationBar != null) _bottomNavigationBar(context),
+        //if (bottomNavigationBar != null) _bottomNavigationBar(context),
       ],
     );
   }
@@ -48,6 +54,8 @@ class MelonLayoutScaffold extends StatelessWidget {
     );
   }
 
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   Widget scaffold(BuildContext context) =>
       AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle(
@@ -57,12 +65,17 @@ class MelonLayoutScaffold extends StatelessWidget {
           systemNavigationBarIconBrightness: systemNavigationBarIconBrightness,
         ),
         child: Scaffold(
-          extendBodyBehindAppBar: extendBodyBehindAppBar,
+          key: _scaffoldKey,
+          extendBodyBehindAppBar: extendBodyBehindAppBar ?? (appBar != null),
           appBar: appBar,
           backgroundColor:
               backgroundColor == null ? Colors.white : Colors.transparent,
           body: body,
-          //bottomSheet: bottomSheet,
+          bottomNavigationBar: bottomNavigationBar,
+          extendBody: extendBodyBehindBottomNavigationBar ??
+              (bottomNavigationBar != null),
+          drawer: drawer,
+          bottomSheet: bottomSheet,
         ),
       );
 }
