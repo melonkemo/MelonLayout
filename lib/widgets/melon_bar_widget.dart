@@ -81,15 +81,15 @@ class MelonBarWidget {
             : height,
         body: Stack(
           children: [
-            if (leadingWidget != null)
-              Align(
-                alignment: Alignment.centerLeft,
-                child: leadingWidget,
-              ),
             if (centerWidget != null)
               Align(
                 alignment: Alignment.center,
                 child: centerWidget,
+              ),
+            if (leadingWidget != null)
+              Align(
+                alignment: Alignment.centerLeft,
+                child: leadingWidget,
               ),
             if (trailingWidget != null)
               Align(
