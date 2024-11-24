@@ -1,6 +1,6 @@
 name: melon_layout
 description: "Melon layout widget"
-version: 1.0.3
+version: 1.0.4
 homepage:
 
 environment:
@@ -15,6 +15,7 @@ dependencies:
   web: ^1.0.0
   plugin_platform_interface: ^2.1.8
   device_info_plus: ^10.1.2
+  blur: ^4.0.0
 
 dev_dependencies:
   flutter_test:

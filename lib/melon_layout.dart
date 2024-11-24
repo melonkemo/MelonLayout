@@ -44,8 +44,8 @@ class MelonLayout {
       required double desktop,
       double dimension = 1.0,
       double mobileDimension = 1.0,
-        double mobileWebDimension = 1.0,
-        double webDimension = 1.0,
+      double mobileWebDimension = 1.0,
+      double webDimension = 1.0,
       desktopDimension = 1.0}) {
     assert(dimension > 0.0);
     assert(mobileDimension > 0.0);
@@ -89,8 +89,10 @@ class MelonLayout {
 
   MelonLayoutPlatform getCurrentPlatform(BuildContext context) {
     if (kIsWeb) {
-      if(defaultTargetPlatform == TargetPlatform.iOS) return MelonLayoutPlatform.ios;
-      if(defaultTargetPlatform == TargetPlatform.android) return MelonLayoutPlatform.android;
+      if (defaultTargetPlatform == TargetPlatform.iOS)
+        return MelonLayoutPlatform.ios;
+      if (defaultTargetPlatform == TargetPlatform.android)
+        return MelonLayoutPlatform.android;
       return MelonLayoutPlatform.web;
     }
     if (Platform.isIOS) return MelonLayoutPlatform.ios;
@@ -129,4 +131,7 @@ class MelonLayout {
 
   static bool isMobile(BuildContext context) =>
       size(context).width < 450 && size(context).height > 600;
+
+  static double ratio(BuildContext context) =>
+      size(context).width / size(context).height;
 }

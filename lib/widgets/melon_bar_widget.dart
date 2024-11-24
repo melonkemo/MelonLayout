@@ -17,7 +17,7 @@ class MelonBarWidget {
           height: height ?? MelonBarWidget.height,
           color: tintColor,
           child: body ?? Container(),
-        ).blur(isDisabled: !isBlur),
+        ).blur(isDisabled: !isBlur,height: height ?? MelonBarWidget.height),
       );
 
   static PreferredSizeWidget full(
