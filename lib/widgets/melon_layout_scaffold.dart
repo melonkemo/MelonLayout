@@ -18,6 +18,7 @@ class MelonLayoutScaffold extends StatelessWidget {
   final Widget? bottomNavigationBar;
   final Widget? bottomSheet;
   final Color? drawerScrimColor;
+  final bool? hasScrollbar;
 
   MelonLayoutScaffold({
     super.key,
@@ -35,6 +36,7 @@ class MelonLayoutScaffold extends StatelessWidget {
     this.backgroundColor,
     this.children,
     this.bottomNavigationBar,
+    this.hasScrollbar
   });
 
   @override
@@ -59,6 +61,7 @@ class MelonLayoutScaffold extends StatelessWidget {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
   Widget scaffold(BuildContext context) =>
+
       AnnotatedRegion<SystemUiOverlayStyle>(
         value: SystemUiOverlayStyle(
           statusBarColor: statusBarColor,
@@ -66,19 +69,22 @@ class MelonLayoutScaffold extends StatelessWidget {
           statusBarIconBrightness: statusBarIconBrightness,
           systemNavigationBarIconBrightness: systemNavigationBarIconBrightness,
         ),
-        child: Scaffold(
-          drawerScrimColor: drawerScrimColor,
-          key: _scaffoldKey,
-          extendBodyBehindAppBar: extendBodyBehindAppBar ?? (appBar != null),
-          appBar: appBar,
-          backgroundColor:
+        child: ScrollConfiguration(
+            behavior: ScrollConfiguration.of(context).copyWith(scrollbars: hasScrollbar ?? false),
+            child: Scaffold(
+              drawerScrimColor: drawerScrimColor,
+              key: _scaffoldKey,
+              extendBodyBehindAppBar: extendBodyBehindAppBar ?? (appBar != null),
+              appBar: appBar,
+              backgroundColor:
               backgroundColor == null ? Colors.white : Colors.transparent,
-          body: body,
-          bottomNavigationBar: bottomNavigationBar,
-          extendBody: extendBodyBehindBottomNavigationBar ??
-              (bottomNavigationBar != null),
-          drawer: drawer,
-          bottomSheet: bottomSheet,
+              body: body,
+              bottomNavigationBar: bottomNavigationBar,
+              extendBody: extendBodyBehindBottomNavigationBar ??
+                  (bottomNavigationBar != null),
+              drawer: drawer,
+              bottomSheet: bottomSheet,
+            )
         ),
       );
 }
